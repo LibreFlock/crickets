@@ -29,7 +29,7 @@ function t:get(name)
 		name = name,
 		_t = self,
 		call = function(self, ...)
-			return self._t[self.name](...)
+			return self._t._registered[self.name](...)
 		end,
 		pcall = function(self, ...)
 			if not self._t:exists(self.name) then return false, "ipc channel no longer exists" end
