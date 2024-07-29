@@ -37,3 +37,5 @@ function t:get(name)
 		end,
 	}
 end
+
+return t
