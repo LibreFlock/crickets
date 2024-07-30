@@ -13,7 +13,7 @@ function t:create(name)
 		_gett = function() return self end,
 		register = function(self, cb)
 			self:_getq().cb = cb
-			local a = self._gett()._waiting_req
+			local a = self._gett()._waiting_reg
 			if a[self.name] ~= nil then
 				for k, v in ipairs(a[self.name])
 				do
@@ -50,8 +50,8 @@ function t:get(name)
 end
 
 function t:wait_create(name, cb)
-	if self._waiting_req[name] ~= nil then self._waiting_req[name] = {} end
-	table.insert(self._waiting_req[name], cb)
+	if self._waiting_reg[name] ~= nil then self._waiting_reg[name] = {} end
+	table.insert(self._waiting_reg[name], cb)
 end
 
 return t
