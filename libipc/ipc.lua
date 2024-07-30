@@ -10,7 +10,7 @@ function t:create(name)
 	return {
 		name = name,
 		_getq = function(_self) return self._registered[_self.name] end,
-		_gett = function() return self end
+		_gett = function() return self end,
 		register = function(self, cb)
 			self:_getq().cb = cb
 			local a = self._gett()._waiting_req
