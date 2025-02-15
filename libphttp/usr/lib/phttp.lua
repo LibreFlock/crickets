@@ -286,4 +286,14 @@ function t.create_response_header(statusCode, headers, dontIncludeNl)
     return resp
 end
 
+function t.create_request_header(verb, path, headers, dontIncludeNl)
+    local resp = string.format("%s %s HTTP/1.1\r\n", string.upper(verb), path)
+    
+    for k, v in ipairs(headers) do
+        resp = resp .. string.format("%s: %s\r\n", v[1], v[2])
+    end
+    if not dontIncludeNl then resp = resp .. "\r\n" end
+    return resp
+end
+
 return t
