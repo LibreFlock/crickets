@@ -12,3 +12,7 @@ HTTP parser library for Lua. Requires at least bstdlib a0.2.0 with switch cases 
 - `status_code: number` Status code of the response (e.g. 200, 300...)
 - `status_message: string` Status *message* of the response, specified by the server. (e.g. OK, Not Found, Forbidden...)
 - `headers: {name=string, value=string}[]` Response headers.
+
+**Creating request headers:** Use `phttp.create_request_header(verb: string, path: string, headers: {string, string}[], dontIncludeNl?: boolean)`. Header format is an indexed table of indexed tables like this: `{ {"Content-Type", "text/plain"} }`, while `dontIncludeNl` disables the extra CRLF at the end of the header, which signals the server that the header section is over. Verb must be a string like `GET` or `POST`.
+
+**Creating response headers:** Use `phttp.create_response_header(statusCode: number, headers: {string, string}[], dontIncludeNl?: boolean)`. Header format is an indexed table of indexed tables like this: `{ {"Content-Type", "text/plain"} }`, while `dontIncludeNl` disables the extra CRLF at the end of the header, which signals the server that the header section is over.
