@@ -10,5 +10,5 @@ HTTP parser library for Lua. Requires at least bstdlib a0.2.0 with switch cases 
 **For responses:** Again, create a parser with `phttp.response_parser()`, allowing you to call `parser:line(text: string)`, this is basically the same as the request parser, except that the `parsed` table is different.
 - `http_version: string`
 - `status_code: number` Status code of the response (e.g. 200, 300...)
-- `status_message` Status *message* of the response, specified by the server. (e.g. OK, Not Found, Forbidden...)
+- `status_message: string` Status *message* of the response, specified by the server. (e.g. OK, Not Found, Forbidden...)
 - `headers: {name=string, value=string}[]` Response headers.
