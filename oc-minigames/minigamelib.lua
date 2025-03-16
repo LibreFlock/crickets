@@ -44,9 +44,11 @@ function t.unload_map()
   -- local d, err = debug.runCommand('fill 69350 102 69451 69385 63 69426 minecraft:air')
   -- print(d, err)
   -- first, remove the top half
-  debug.runCommand('fill 69351 102 69450 69385 76 69426 minecraft:air')
+  -- debug.runCommand('fill 69351 102 69450 69385 76 69426 minecraft:air')
+  debug.runCommand('fill 78 66 643 110 82 666 minecraft:air')
   -- then, we remove the bottom
-  debug.runCommand('fill 69385 75 69426 69351 64 69450 minecraft:air')
+  -- debug.runCommand('fill 69385 75 69426 69351 64 69450 minecraft:air')
+  debug.runCommand('fill 78 82 643 110 90 666 minecraft:air')
 end
 
 function t.join(tabled, delimiter)
@@ -166,7 +168,8 @@ function t.load_map(filepath, type)
 end
 
 function t.spread_players(players)
-  debug.runCommand('spreadplayers 69367 69438 10 11 false ' .. t.join(players, " "))
+  -- debug.runCommand('spreadplayers 69367 69438 10 11 false ' .. t.join(players, " "))
+  debug.runCommand('spreadplayers 93 655 10 11 false ' .. t.join(players, " "))
 end
 
 function t.set_block(x, y, z, block)
@@ -308,10 +311,21 @@ function t.enable_command_feedback()
   return debug.runCommand('gamerule sendCommandFeedback true')
 end
 
+function t.count_tapes()
+  local stacks = transposer.getAllStacks(sides.left).getAll()
+  local tapec = 0
+  for _, stack in ipairs(stacks) do
+    if stack.label == "Cassette Tape" then tapec = tapec + 1 end
+  end
+  return tapec
+end
 function t.random_tape()
-  local tapes = t.load_table("/etc/tapes")
+  local tapes = {["tapes"]=t.count_tapes()}
+  --print(require("serialization").serialize
   local slot = math.random(tapes.tapes)
-  transposer.transferItem(sides.top, sides.bottom, 1, slot, 1)
+  -- print(slot)
+  -- transposer.transferItem(sides.top, sides.bottom, 1, slot, 1)
+  transposer.transferItem(sides.left, sides.top, 1, slot, 1)
   tape_drive.play()
   return slot
 end
@@ -319,7 +333,8 @@ end
 function t.return_tape(slot)
   tape_drive.stop()
   tape_drive.seek(-tape_drive.getSize())
-  transposer.transferItem(sides.bottom, sides.top, 1, 1, slot)
+  -- transposer.transferItem(sides.bottom, sides.top, 1, 1, slot)
+  transposer.transferItem(sides.top, sides.left, 1, 1, slot)
 end
 
 function t.time_ms()

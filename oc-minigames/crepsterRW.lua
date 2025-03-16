@@ -27,9 +27,9 @@ function eliminate(player)
   local mgplayer = mg.get_player(player)
   mgplayer:setGamemode(mg.gamemodes.creative)
   bgj:push(function()
-    bgjl.sleep(2 * 20) -- 2 seconds
+    bgjl.sleep(3) -- 2 seconds -- 15 ticks
     mgplayer:setGamemode(mg.gamemodes.creative) -- just to make sure
-    mgplayer:teleport(mg.create_vector(69390, 77, 69436))
+    mgplayer:teleport(mg.create_vector(79, 75, 634))
     mgplayer:clear()
   end)
 end
@@ -37,7 +37,8 @@ end
 local slot = mg.random_tape()
 
 local arena = {
-  mg.create_vector(69385, 76, 69450), mg.create_vector(69351, 76, 69426)
+  -- mg.create_vector(69385, 76, 69450), mg.create_vector(69351, 76, 69426)
+  mg.create_vector(78, 68, 643), mg.create_vector(110, 68, 666)
 }
 if opt.map then
   mg.load_map("./maps/crepster1v1/" .. opt.map .. ".map")
@@ -58,7 +59,7 @@ local endCheck = mg.game_end_check_builder(1, eliminate, function(p)
   -- print(p)
   if p == nil then return false end
   local player = mg.get_player(p)
-  return player:getY() < 74 or deathtr:died(p)
+  return player:getY() < 68 or deathtr:died(p)
 end)
 
 -- giving the additional items is now a background job lets fucking gooo
@@ -80,7 +81,7 @@ mg.game_loop(
       local player = mg.get_player(playerName)
       if not opt['no-clear'] then player:clear() end
       player:setGamemode(mg.gamemodes.creative)
-      player:teleport(mg.create_vector(69390, 77, 69436))
+      player:teleport(mg.create_vector(83, 75, 634))
     end)
     debug.runCommand('title @a title ' .. s.serialize(winners[1] .. " won!"))
     mg.enable_command_feedback()
