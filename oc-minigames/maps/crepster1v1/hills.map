@@ -1,0 +1,10 @@
+{
+  coordinates={
+    start={69349, 81, 69473},
+    endco={69315, 76, 69497}
+  },
+  cloneCoords={69351, 76, 69426},
+  metadata={
+    name="Hills"
+  }
+}

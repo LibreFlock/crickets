@@ -1,0 +1,10 @@
+{
+  coordinates={
+    start={69384, 89, 69474},
+    endco={69352, 71, 69496}
+  },
+  cloneCoords={69351, 71, 69426},
+  metadata={
+    name="Fusis map"
+  }
+}

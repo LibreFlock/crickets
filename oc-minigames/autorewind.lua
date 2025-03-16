@@ -1,0 +1,2 @@
+local tape = require("component").tape_drive
+tape.seek(-9999999999999999999999999999999999999999999999999999999)
